@@ -16,7 +16,7 @@
 	'name'        => 'NOMBRE',
 	'id'          => 'NOMBRE',
 	'size'        => 50,
-	'value'		  => set_value('NOMBRE',@$datos_usuarios[0]->NOMBRE),
+	'value'		  => set_value('NOMBRE',@$datos_catalagos[0]->NOMBRE),
 	'placeholder' => 'Nombre',
 	'type'        => 'text',
 	);
@@ -28,47 +28,47 @@
 	echo '<td><font color="red">'.form_error('NOMBRE').'</font></td>';
 	echo '</tr>';
 	
-	$Apellidos = array(
-	'name'        => 'APELLIDOS',
-	'id'          => 'APELLIDOS',
+	$Imagen = array(
+	'name'        => 'IMAGEN',
+	'id'          => 'IMAGEN',
 	'size'        => 50,
-	'value'		  => set_value('APELLIDOS',@$datos_usuarios[0]->APELLIDOS),
-	'placeholder' => 'Apellidos',
+	'value'		  => set_value('IMAGEN',@$datos_catalagos[0]->IMAGEN),
+	'placeholder' => 'Imagen',
 	'type'        => 'text',
 	);
 	echo '<tr>';
-	echo '<td>'.form_label("Acronimo:",'APELLIDOS').'</td>';
+	echo '<td>'.form_label("Imagen:",'IMAGEN').'</td>';
 	echo '<td>';
-	echo form_input($Apellidos);
+	echo form_input($Imagen);
 	echo '</td>';
-	echo '<td><font color="red">'.form_error('APELLIDOS').'</font></td>';
+	echo '<td><font color="red">'.form_error('IMAGEN').'</font></td>';
 	echo '</tr>';
 	
-	$Email 		  = array(
-	'name'        => 'EMAIL',
-	'id'          => 'EMAIL',
+	$Acronimo 		  = array(
+	'name'        => 'ACRONIMO',
+	'id'          => 'ACRONIMO',
 	'size'        => 50,
-	'value'		  => set_value('EMAIL',@$datos_usuarios[0]->EMAIL),
-	'placeholder' => 'Email',
+	'value'		  => set_value('ACRONIMO',@$datos_usuarios[0]->ACRONIMO),
+	'placeholder' => 'Acronimo',
 	'type'        => 'text',
 	);
 	echo '<tr>';
-	echo '<td>'.form_label("Imagen:",'EMAIL').'</td>';
+	echo '<td>'.form_label("Acronimo:",'ACRONIMO').'</td>';
 	echo '<td>';
-	echo form_input($Email);
+	echo form_input($Acronimo);
 	echo '</td>';
-	echo '<td><font color="red">'.form_error('EMAIL').'</font></td>';
+	echo '<td><font color="red">'.form_error('ACRONIMO').'</font></td>';
 	echo '</tr>';
 	
 	$CampoOpcionesTipo = array(
-	'0'               	=> '---ELECCIONE TIPO DE USUARIO---',
+	'0'               	=> '---SELECCIONE TIPO DE USUARIO---',
 	'Administrador'		=> 'Administrador',
 	'Invitado'	    	=> 'Invitado',
 	);
 	echo '<tr>';
     echo '<td>'.form_label("Creador:",'TIPO').'</td>';
     echo '<td>';
-    echo  form_dropdown('TIPO', $CampoOpcionesTipo, set_value('TIPO',@$datos_usuarios[0]->TIPO));
+    echo  form_dropdown('TIPO', $CampoOpcionesTipo, set_value('CREADOR',@$datos_usuarios[0]->TIPO));
     echo '</td>';
     echo '<td><font color="red">'.form_error('TIPO').'</font></td>';
     echo '</tr>';

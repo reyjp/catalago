@@ -7,7 +7,7 @@ class catalago extends CI_Controller
      {
           parent::__construct();
           //Cargamos el modelo deel controlador
-          $this->load->model('model_usuarios');
+          $this->load->model('model_catalago');
           $this->load->model('model_seguridad');
           $this->load->model('model_login');
      }
@@ -19,7 +19,7 @@ class catalago extends CI_Controller
           /*Si el usuario esta logeado*/
           $this->Seguridad();
           $this->load->view('header');
-          $data['usuarios'] = $this->model_usuarios->ListarUsuarios();         
+          $data['catalagos'] = $this->model_catalago->ListarCatalago();         
           $this->load->view('view_catalago', $data);
           $this->load->view('footer');
 	}
@@ -32,13 +32,13 @@ class catalago extends CI_Controller
 		$this->ValidaCampos();
 		if($this->form_validation->run() == TRUE){
 				//Verificamos si existe el email
-			   $VerifyExist = $this->model_usuarios->ExisteEmail($this->input->post("EMAIL"));
+			   $VerifyExist = $this->model_catalago->ExisteEmail($this->input->post("EMAIL"));
                if($VerifyExist==0){
-               	    $UsuariosInsertar = $this->input->post();//Recibimos todo los campos por array nos lo envia codeigther
-               	    $UsuariosInsertar["FECHA_REGISTRO"] = $hoy;//le agregamos la fecha de registro
+               	    $CatalagosInsertar = $this->input->post();//Recibimos todo los campos por array nos lo envia codeigther
+               	    $CatalagosInsertar["FECHA_REGISTRO"] = $hoy;//le agregamos la fecha de registro
                	    //guardamos los registros
-               	    $this->model_usuarios->SaveUsuarios($UsuariosInsertar);
-               	    redirect("usuarios?save=true");
+               	    $this->model_catalago->SaveCatalago($CatalagosInsertar);
+               	    redirect("catalagos?save=true");
                }
 			   if($VerifyExist>0){
                     $this->session->set_flashdata('msg', '<div class="alert alert-error text-center">Email Duplicado</div>');
@@ -56,9 +56,9 @@ class catalago extends CI_Controller
 	 function ValidaCampos(){
 		/*Campos para validar que no esten vacio los campos*/
 		 $this->form_validation->set_rules("NOMBRE", "Nombre", "trim|required");
-		 $this->form_validation->set_rules("APELLIDOS", "Apellidos", "trim|required");
-		 $this->form_validation->set_rules("EMAIL", "Email", "trim|required|valid_email");
-		 $this->form_validation->set_rules("TIPO", "Tipo", "callback_select_tipo");
+		 $this->form_validation->set_rules("IMAGEN", "Imagen", "trim|required");
+		 $this->form_validation->set_rules("ACRONIMO", "Acronimo", "trim|required|valid_email");
+		 $this->form_validation->set_rules("CREADOR", "Tipo", "callback_select_tipo");
 		 $this->form_validation->set_rules("ESTATUS", "Estatus", "callback_select_estatus");
 	 }
 	 function select_tipo($campo)
@@ -86,7 +86,7 @@ class catalago extends CI_Controller
 	 public function editar($id = NULL){
 		
 		if ($id == NULL OR !is_numeric($id)){
-			$data['Modulo']  = "Usuarios";
+			$data['Modulo']  = "Catalagos";
 			$data['Error']   = "Error: El ID <strong>".$id."</strong> No es Valido, Verifica tu Busqueda !!!!!!!";
 			$this->load->view('header');
 			$this->load->view('view_errors',$data);
@@ -99,17 +99,17 @@ class catalago extends CI_Controller
 				
 			if ($this->form_validation->run() == TRUE){
 				$datos_update = $this->input->post();
-				$id_insertado = $this->model_usuarios->edit($datos_update,$id);
-				redirect('usuarios?update=true');
+				$id_insertado = $this->model_catalago->edit($datos_update,$id);
+				redirect('catalagos?update=true');
 				
 			}else{
 				$this->Nuevo();
 			}
 			
 		}else{
-			$data['datos_usuarios'] = $this->model_usuarios->BuscarID($id);
-			if (empty($data['datos_usuarios'])){
-				$data['Modulo']  = "Usuarios";
+			$data['datos_catalagos'] = $this->model_catalago->BuscarID($id);
+			if (empty($data['datos_catalagos'])){
+				$data['Modulo']  = "Catalagos";
 				$data['Error']   = "Error: El ID <strong>".$id."</strong> No es Valido, Verifica tu Busqueda !!!!!!!";
 				$this->load->view('header');
 				$this->load->view('view_errors',$data);
@@ -124,7 +124,7 @@ class catalago extends CI_Controller
 	}
 	public function eliminar($id = NULL){
 		if ($id == NULL OR !is_numeric($id)){
-			$data['Modulo']  = "Usuarios";
+			$data['Modulo']  = "Catalagos";
 			$data['Error']   = "Error: El ID <strong>".$id."</strong> No es Valido, Verifica tu Busqueda !!!!!!!";
 			$this->load->view('header');
 			$this->load->view('view_errors',$data);
@@ -135,15 +135,15 @@ class catalago extends CI_Controller
 			$id_eliminar = $this->input->post('ID');
 			$boton       = strtoupper($this->input->post('btn_guardar'));
 			if($boton=="NO"){
-				redirect("usuarios");
+				redirect("catalagos");
 			}else{
-                                $this->model_usuarios->Eliminar($id_eliminar);
-				redirect("usuarios?delete=true");
+                                $this->model_catalago->Eliminar($id_eliminar);
+				redirect("catalagos?delete=true");
 			}
 		}else{
-			$data['datos_usuarios'] = $this->model_usuarios->BuscarID($id);
-			if (empty($data['datos_usuarios'])){
-				$data['Modulo']  = "Usuarios";
+			$data['datos_catalagos'] = $this->model_catalago->BuscarID($id);
+			if (empty($data['datos_catalagos'])){
+				$data['Modulo']  = "Catalagos";
 				$data['Error']   = "Error: El ID <strong>".$id."</strong> No es Valido, Verifica tu Busqueda !!!!!!!";
 				$this->load->view('header');
 				$this->load->view('view_errors',$data);
@@ -155,58 +155,10 @@ class catalago extends CI_Controller
 			}
 		}
 	}
-	public function password($id=NULL){
-		if ($id == NULL OR !is_numeric($id)){
-			$data['Modulo']  = "Usuarios";
-			$data['Error']   = "Error: El ID <strong>".$id."</strong> No es Valido, Verifica tu Busqueda !!!!!!!";
-			$this->load->view('header');
-			$this->load->view('view_errors',$data);
-			$this->load->view('footer');
-			return;
-		}
-		$data['datos_usuarios'] = $this->model_usuarios->BuscarID($id);
-		if ($this->input->post()) {
-			$this->form_validation->set_rules("PASSWORD", "Password", "trim|required");
-			$this->form_validation->set_rules("PASSWORD1", "Confirmar Password", "trim|required");
-			if ($this->form_validation->run() == TRUE){
-			    $password  = $this->input->post('PASSWORD');
-				$password1 = $this->input->post('PASSWORD1');
-				if($password==$password1){
-				    
-                                        $password_update  = array('PASSWORD' => MD5($password));
-                                        $this->model_usuarios->edit($password_update,$id);
-					redirect('usuarios?password=true');
-				}else{
-					$this->session->set_flashdata('msg', '<div class="alert alert-error text-center">La Contraseña No coincide</div>');
-                    $this->load->view('header');
-					$this->load->view('view_password',$data);
-					$this->load->view('footer');
-				}
-			}else{
-				$this->load->view('header');
-				$this->load->view('view_password',$data);
-				$this->load->view('footer');
-			}
-			
-		}else{
-			
-			if (empty($data['datos_usuarios'])){
-				$data['Modulo']  = "Usuarios";
-				$data['Error']   = "Error: El ID <strong>".$id."</strong> No es Valido, Verifica tu Busqueda !!!!!!!";
-				$this->load->view('header');
-				$this->load->view('view_errors',$data);
-				$this->load->view('footer');
-			}else{
-				$this->load->view('header');
-				$this->load->view('view_password',$data);
-				$this->load->view('footer');
-			}
-		}
-	
-	}
+
 	public function permisos($id = NULL){
 	   if ($id == NULL OR !is_numeric($id)){
-			$data['Modulo']  = "Usuarios";
+			$data['Modulo']  = "Catalagos";
 			$data['Error']   = "Error: El ID <strong>".$id."</strong> No es Valido, Verifica tu Busqueda !!!!!!!";
 			$this->load->view('header');
 			$this->load->view('view_errors',$data);
@@ -217,18 +169,18 @@ class catalago extends CI_Controller
 			    $id              = $this->input->post("ID");
 				$permission_data = $this->input->post("permissions")!=false ? $this->input->post("permissions"):array();
 				/*APLICAMOS UPDATE*/
-				$this->model_usuarios->DesactivaPermisos($id);
+				$this->model_catalago->DesactivaPermisos($id);
 				foreach($permission_data as $Permisos){
-				    $ExistePermiso = $this->model_usuarios->ExistePermiso($id,$Permisos);
+				    $ExistePermiso = $this->model_catalago->ExistePermiso($id,$Permisos);
 					/*EXISTE PERMISO ACTUALIZAMOS, SI NO INSERTAMOS*/
 				    if($ExistePermiso==1){
-						$this->model_usuarios->ActualizaPermiso($id,$Permisos);
+						$this->model_catalago->ActualizaPermiso($id,$Permisos);
 					}else{
 						$AgregaPermiso  = array(
-							'ID_USUARIO' => $id,
+							'ID_CATALAGO' => $id,
 							'ID_MENU'    => $Permisos
 						);
-						$this->model_usuarios->AgregaPermiso($AgregaPermiso);
+						$this->model_catalago->AgregaPermiso($AgregaPermiso);
 					}
 				}
 				/*Si el usuario que se asigno permisos es el que esta logeado entonces refrescamos la sesion*/
@@ -238,11 +190,11 @@ class catalago extends CI_Controller
 					$this->session->set_userdata($Menu);
 				}
 				
-				redirect('usuarios?permisos=true');
+				redirect('catalagos?permisos=true');
 		}else{
-			$data['datos_usuarios'] = $this->model_usuarios->BuscarID($id);
-			if (empty($data['datos_usuarios'])){
-				$data['Modulo']  = "Usuarios";
+			$data['datos_catalagos'] = $this->model_catalago->BuscarID($id);
+			if (empty($data['datos_catalagos'])){
+				$data['Modulo']  = "Catalagos";
 				$data['Error']   = "Error: El ID <strong>".$id."</strong> No es Valido, Verifica tu Busqueda !!!!!!!";
 				$this->load->view('header');
 				$this->load->view('view_errors',$data);
@@ -252,9 +204,9 @@ class catalago extends CI_Controller
 				$DescripcionPerm= array();
 				$idMenus		= array();
 				$CountPermiso 	= 0;
-			    $MenuCargardo 	= $this->model_usuarios->MenuCompleto();
+			    $MenuCargardo 	= $this->model_catalago->MenuCompleto();
 				foreach($MenuCargardo as $Menu){
-					$MiMenu = $this->model_usuarios->MiMenu($id,$Menu->ID);
+					$MiMenu = $this->model_catalago->MiMenu($id,$Menu->ID);
 					$EstatusPermiso[$CountPermiso] = array();
 					$DescripcionPerm[$CountPermiso]= array();
 					$idMenus[$CountPermiso]		   = array();
@@ -275,3 +227,5 @@ class catalago extends CI_Controller
 		
 	 }
 }
+/* Archivo clientes.php */
+/* Location: ./application/controllers/clientes.php */
