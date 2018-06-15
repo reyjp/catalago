@@ -2,7 +2,7 @@
 	  echo '<center>';
 	  echo '<table border=0 class="ventanas" width="650" cellspacing="0" cellpadding="0">';
 	  echo '<tr>';
-	  echo "<td height='10' class='tabla_ventanas_login' height='10' colspan='3'><legend align='center'>.: Nuevo Usuario :.</legend></td>";
+	  echo "<td height='10' class='tabla_ventanas_login' height='10' colspan='3'><legend align='center'>.: Nuevo Catalago :.</legend></td>";
 	  echo '</tr>';
 	  echo '<tr><td colspan=3>';
 	  $attributes = array("class" => "form-horizontal", "id" => "form", "name" => "form");
@@ -37,7 +37,7 @@
 	'type'        => 'text',
 	);
 	echo '<tr>';
-	echo '<td>'.form_label("Apellidos:",'APELLIDOS').'</td>';
+	echo '<td>'.form_label("Acronimo:",'APELLIDOS').'</td>';
 	echo '<td>';
 	echo form_input($Apellidos);
 	echo '</td>';
@@ -53,7 +53,7 @@
 	'type'        => 'text',
 	);
 	echo '<tr>';
-	echo '<td>'.form_label("Email:",'EMAIL').'</td>';
+	echo '<td>'.form_label("Imagen:",'EMAIL').'</td>';
 	echo '<td>';
 	echo form_input($Email);
 	echo '</td>';
@@ -61,12 +61,12 @@
 	echo '</tr>';
 	
 	$CampoOpcionesTipo = array(
-	'0'               	=> '---SELECCIONE TIPO DE USUARIO---',
+	'0'               	=> '---ELECCIONE TIPO DE USUARIO---',
 	'Administrador'		=> 'Administrador',
 	'Invitado'	    	=> 'Invitado',
 	);
 	echo '<tr>';
-    echo '<td>'.form_label("Tipo:",'TIPO').'</td>';
+    echo '<td>'.form_label("Creador:",'TIPO').'</td>';
     echo '<td>';
     echo  form_dropdown('TIPO', $CampoOpcionesTipo, set_value('TIPO',@$datos_usuarios[0]->TIPO));
     echo '</td>';
