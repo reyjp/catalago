@@ -1,102 +1,83 @@
+<h2>Nuevo catalago</h2>
+
+
+<br/> <br/>
+
+
+
 <?php
-	  echo '<center>';
-	  echo '<table border=0 class="ventanas" width="650" cellspacing="0" cellpadding="0">';
-	  echo '<tr>';
-	  echo "<td height='10' class='tabla_ventanas_login' height='10' colspan='3'><legend align='center'>.: Nuevo Catalago :.</legend></td>";
-	  echo '</tr>';
-	  echo '<tr><td colspan=3>';
-	  $attributes = array("class" => "form-horizontal", "id" => "form", "name" => "form");
-	  //echo form_open("clientes/Save", $attributes);
-	  echo form_open();
-	  echo '<center>';
-	  echo '<table border=0>';
-	  
-	#dibujamos campos texto
-	$Nombre 	  = array(
-	'name'        => 'NOMBRE',
-	'id'          => 'NOMBRE',
-	'size'        => 50,
-	'value'		  => set_value('NOMBRE',@$datos_catalagos[0]->NOMBRE),
-	'placeholder' => 'Nombre',
-	'type'        => 'text',
-	);
-	echo '<tr>';
-	echo '<td>'.form_label("Nombre:",'NOMBRE').'</td>';
-	echo '<td>';
-	echo form_input($Nombre);
-	echo '</td>';
-	echo '<td><font color="red">'.form_error('NOMBRE').'</font></td>';
-	echo '</tr>';
+
+
+$input_nombre 	  = array(
+	'name'        => 'nombre',
+	'id'          => 'nombre',
+	'maxlenght'	  => '50',	
+	'size'        => '100',
 	
-	$Imagen = array(
-	'name'        => 'IMAGEN',
-	'id'          => 'IMAGEN',
-	'size'        => 50,
-	'value'		  => set_value('IMAGEN',@$datos_catalagos[0]->IMAGEN),
-	'placeholder' => 'Imagen',
-	'type'        => 'text',
 	);
-	echo '<tr>';
-	echo '<td>'.form_label("Imagen:",'IMAGEN').'</td>';
-	echo '<td>';
-	echo form_input($Imagen);
-	echo '</td>';
-	echo '<td><font color="red">'.form_error('IMAGEN').'</font></td>';
-	echo '</tr>';
+
+$input_acronimo 	  = array(
+	'name'        => 'aronimo',
+	'id'          => 'acronimo',
+	'maxlenght'	  => '50',	
+	'size'        => '100',
 	
-	$Acronimo 		  = array(
-	'name'        => 'ACRONIMO',
-	'id'          => 'ACRONIMO',
-	'size'        => 50,
-	'value'		  => set_value('ACRONIMO',@$datos_usuarios[0]->ACRONIMO),
-	'placeholder' => 'Acronimo',
-	'type'        => 'text',
 	);
-	echo '<tr>';
-	echo '<td>'.form_label("Acronimo:",'ACRONIMO').'</td>';
-	echo '<td>';
-	echo form_input($Acronimo);
-	echo '</td>';
-	echo '<td><font color="red">'.form_error('ACRONIMO').'</font></td>';
-	echo '</tr>';
+
+$input_creador 	  = array(
+	'name'        => 'creador',
+	'id'          => 'creador',
+	'maxlenght'	  => '50',	
+	'size'        => '100',
 	
-	$CampoOpcionesTipo = array(
+	);
+
+$input_usuariom 	  = array(
+	'name'        => 'usuariom',
+	'id'          => 'usuariom',
+	'maxlenght'	  => '50',	
+	'size'        => '100',
+	
+	);
+
+$CampoOpcionesTipo = array(
 	'0'               	=> '---SELECCIONE TIPO DE USUARIO---',
 	'Administrador'		=> 'Administrador',
 	'Invitado'	    	=> 'Invitado',
 	);
-	echo '<tr>';
-    echo '<td>'.form_label("Creador:",'TIPO').'</td>';
-    echo '<td>';
-    echo  form_dropdown('TIPO', $CampoOpcionesTipo, set_value('CREADOR',@$datos_usuarios[0]->TIPO));
-    echo '</td>';
-    echo '<td><font color="red">'.form_error('TIPO').'</font></td>';
-    echo '</tr>';
-	
-	$Estatus = array(
+
+$opciones =  array(
 	'NONE'   => '---SELECCIONE ESTATUS---',
 	'0'	     => 'Activo',
 	'1'      => 'Inactivo',
 	);
-	echo '<tr>';
-	echo '<td>'.form_label("Estatus:",'ESTATUS').'</td>';
-	echo '<td>';
-	echo  form_dropdown('ESTATUS', $Estatus, set_value('ESTATUS',@$datos_usuarios[0]->ESTATUS));
-	echo '</td>';
-	echo '<td><font color="red">'.form_error('ESTATUS').'</font></td>';
-	echo '</tr>';     
-		
-	echo '<tr>';
-	echo '<td colspan=3>'.$this->session->flashdata('msg').'</td>';
-	echo '</tr>';
-	echo '<tr><td colspan=3><hr/></td></tr>';
-	echo '<tr>';
-	echo '<td colspan=3><center>';
-	echo '<input type="submit" class="btn btn-success" value="Guardar">';
-    echo '</center></td></tr>';
-    echo '</table></center>';
-    echo form_close(); 
-    echo '</td></tr>';
-    echo '</table>';
-    echo '</center>';
+ 
 ?>
+
+<?php echo form_open() ?> <br/>
+
+<?php echo form_label('Nombre') ?> <br/>
+
+<?php echo form_input($input_nombre) ?> <br/><br/>
+
+<?php echo form_label('Acronimo') ?> <br/>
+
+<?php echo form_input($input_acronimo) ?> <br/><br/>
+
+<?php echo form_label('Creador') ?> <br/>
+
+<?php echo form_input($input_creador) ?> <br/><br/>
+
+<?php echo form_label('Usuario') ?> <br/>
+
+<?php echo  form_dropdown('usuariom', $CampoOpcionesTipo) ?><br/><br/>
+
+<?php echo form_label('Status') ?> <br/>
+
+<?php echo  form_dropdown('status', $opciones) ?><br/><br/>
+
+<?php echo form_submit('btn_enviar', 'Guardar!') ?>
+
+
+<?php echo form_close() ?>
+
