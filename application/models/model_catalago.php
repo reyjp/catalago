@@ -16,6 +16,12 @@ class model_catalago extends CI_Model
      	return $query->result();
      	
      }
+
+     function add()
+     {
+          $this->load->database(); 
+          $this->db->insert('catalagon',$this->input->post()); 
+     }
  }
 
 

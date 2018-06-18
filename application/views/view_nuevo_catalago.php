@@ -8,20 +8,22 @@
 <?php
 
 
+
+
 $input_nombre 	  = array(
 	'name'        => 'nombre',
 	'id'          => 'nombre',
 	'maxlenght'	  => '50',	
 	'size'        => '100',
-	
+	'value'       => set_value('nombre')
 	);
 
 $input_acronimo 	  = array(
-	'name'        => 'aronimo',
+	'name'        => 'acronimo',
 	'id'          => 'acronimo',
 	'maxlenght'	  => '50',	
 	'size'        => '100',
-	
+	'value'       => set_value('acronimo')
 	);
 
 $input_creador 	  = array(
@@ -29,17 +31,10 @@ $input_creador 	  = array(
 	'id'          => 'creador',
 	'maxlenght'	  => '50',	
 	'size'        => '100',
-	
+	'value'       => set_value('creador')
 	);
 
-$input_usuariom 	  = array(
-	'name'        => 'usuariom',
-	'id'          => 'usuariom',
-	'maxlenght'	  => '50',	
-	'size'        => '100',
-	
-	);
-
+ 
 $CampoOpcionesTipo = array(
 	'0'               	=> '---SELECCIONE TIPO DE USUARIO---',
 	'Administrador'		=> 'Administrador',
@@ -54,23 +49,29 @@ $opciones =  array(
  
 ?>
 
+
+
+
+
+
+
 <?php echo form_open() ?> <br/>
 
 <?php echo form_label('Nombre') ?> <br/>
 
-<?php echo form_input($input_nombre) ?> <br/><br/>
+<?php echo form_input($input_nombre) ?><?php echo form_error('nombre'); ?> <br/><br/>
 
 <?php echo form_label('Acronimo') ?> <br/>
 
-<?php echo form_input($input_acronimo) ?> <br/><br/>
+<?php echo form_input($input_acronimo) ?><?php echo form_error('acronimo'); ?> <br/><br/>
 
 <?php echo form_label('Creador') ?> <br/>
 
-<?php echo form_input($input_creador) ?> <br/><br/>
+<?php echo form_input($input_creador) ?><?php echo form_error('creador'); ?> <br/><br/>
 
 <?php echo form_label('Usuario') ?> <br/>
 
-<?php echo  form_dropdown('usuariom', $CampoOpcionesTipo) ?><br/><br/>
+<?php echo  form_dropdown('usuariom', $CampoOpcionesTipo, set_value('usuariom')) ?><br/><br/>
 
 <?php echo form_label('Status') ?> <br/>
 
