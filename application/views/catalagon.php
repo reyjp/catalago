@@ -8,19 +8,25 @@
 
 
 
-	<?php 
+	<?php 	if (empty($listado)) { ?>
 
-
-		if (empty($listado)) {
-
-			echo "Sin catalagos";
+			<h1>Sin Catalagos</h1> 
 			
-		}else{
-			echo "tienes catalagos";
+	<?php	}else{ ?>
+		Tienes <?php echo count($listado); ?> Catalago(s)
+		<br/> <br/>
 
+		<?php
+
+		foreach ($listado as $catalago) {
+			echo $catalago->nombre.'<br/>';
 		}
 
+		?>
 
-	?>
+	<?php		} ?>
+
+
+	
 </body>
 </html>

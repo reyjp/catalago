@@ -20,7 +20,12 @@ class model_catalago extends CI_Model
      function add()
      {
           $this->load->database(); 
-          $this->db->insert('catalagon',$this->input->post()); 
+          $data_insertar = $this->input->post();
+          unset($data_insertar['btn_enviar']);
+
+          $this->db->insert('catalagon', $data_insertar);
+
+          return $this->db->insert_id(); 
      }
  }
 

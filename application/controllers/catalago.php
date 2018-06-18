@@ -34,8 +34,9 @@ class catalago extends CI_Controller
 			$this->form_validation->set_rules('status','Estatus','trim');
 
 			if ($this->form_validation->run()== TRUE) {
-				$this->model_catalago->add();
-				print_r($this->input->post());
+				$id_insertado = $this->model_catalago->add();
+				echo "el id creado es:".$id_insertado;
+				
 			}else{
 				$this->load->view('view_nuevo_catalago' );
 			}
