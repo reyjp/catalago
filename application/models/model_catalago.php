@@ -37,6 +37,16 @@ class model_catalago extends CI_Model
 
           return $this->db->insert_id(); 
      }
+
+     function edit($id)
+     {
+     	  $this->load->database(); 
+          $data_editar = $this->input->post();
+          unset($data_editar['btn_enviar']);
+
+          $this->db->where('id',$id);
+          $this->db->update('catalagon', $data_editar);
+     }
  }
 
 

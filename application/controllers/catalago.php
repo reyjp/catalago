@@ -58,16 +58,38 @@ class catalago extends CI_Controller
 
 		
 		$this->load->helper('form');
+		$this->load->helper('url');
 		$this->load->library('form_validation');
 		$this->load->model('model_catalago');
 
-		$data['datos_catalago'] = $this->model_catalago->get_by_id($id);
+			if ($this->input->post()) {
+			$this->form_validation->set_rules('nombre','El Nombre','required');
+			$this->form_validation->set_rules('creador','Creador','required|min_length[3]');
+			$this->form_validation->set_rules('acronimo','Acronimo','required|min_length[3]');
+			$this->form_validation->set_rules('usuariom','Tipo de Usuario','trim');
+			$this->form_validation->set_rules('status','Estatus','trim');
+
+			if ($this->form_validation->run() == TRUE) {
+				$this->model_catalago->edit($id);
+			}else{
+				$this->load->view('view_nuevo_catalago');
+				redirect('catalago');
+			}
+
+		}else{
+
+
+			$data['datos_catalago'] = $this->model_catalago->get_by_id($id);
 
 		if (empty($data['datos_catalago'])) {
 			echo "el id es invalido";
 		}else{
 			$this->load->view('view_nuevo_catalago', $data);
 		}
+
+		}
+
+		
 
 		
 	}
