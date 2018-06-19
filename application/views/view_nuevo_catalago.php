@@ -15,7 +15,7 @@ $input_nombre 	  = array(
 	'id'          => 'nombre',
 	'maxlenght'	  => '50',	
 	'size'        => '100',
-	'value'       => set_value('nombre')
+	'value'       => set_value('nombre',$datos_catalago[0]->nombre)
 	);
 
 $input_acronimo 	  = array(
@@ -23,7 +23,7 @@ $input_acronimo 	  = array(
 	'id'          => 'acronimo',
 	'maxlenght'	  => '50',	
 	'size'        => '100',
-	'value'       => set_value('acronimo')
+	'value'       => set_value('acronimo',$datos_catalago[0]->acronimo)
 	);
 
 $input_creador 	  = array(
@@ -31,7 +31,7 @@ $input_creador 	  = array(
 	'id'          => 'creador',
 	'maxlenght'	  => '50',	
 	'size'        => '100',
-	'value'       => set_value('creador')
+	'value'       => set_value('creador',$datos_catalago[0]->creador)
 	);
 
  
@@ -71,11 +71,11 @@ $opciones =  array(
 
 <?php echo form_label('Usuario') ?> <br/>
 
-<?php echo  form_dropdown('usuariom', $CampoOpcionesTipo, set_value('usuariom')) ?><br/><br/>
+<?php echo  form_dropdown('usuariom', $CampoOpcionesTipo, set_value('usuariom',$datos_catalago[0]->usuariom)) ?><br/><br/>
 
 <?php echo form_label('Status') ?> <br/>
 
-<?php echo  form_dropdown('status', $opciones) ?><br/><br/>
+<?php echo  form_dropdown('status', $opciones, set_value('status',$datos_catalago[0]->status))) ?><br/><br/>
 
 <?php echo form_submit('btn_enviar', 'Guardar!') ?>
 

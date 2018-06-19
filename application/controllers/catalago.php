@@ -49,5 +49,26 @@ class catalago extends CI_Controller
 
 	}
 
+	public function modificar($id = NULL ){
 
+		if ($id == NULL OR !is_numeric($id)) {
+			echo 'falta id'	;
+			return;
+		}
+
+		
+		$this->load->helper('form');
+		$this->load->library('form_validation');
+		$this->load->model('model_catalago');
+
+		$data['datos_catalago'] = $this->model_catalago->get_by_id($id);
+
+		if (empty($data['datos_catalago'])) {
+			echo "el id es invalido";
+		}else{
+			$this->load->view('view_nuevo_catalago', $data);
+		}
+
+		
+	}
 }

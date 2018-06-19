@@ -17,6 +17,16 @@ class model_catalago extends CI_Model
      	
      }
 
+      function get_by_id($id)
+     {
+          $this->load->database();
+           $query  = $this->db->where('id',$id);
+          $query  = $this->db->get('catalagon');
+
+          return $query->result();
+          
+     }
+
      function add()
      {
           $this->load->database(); 
