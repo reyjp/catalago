@@ -75,7 +75,7 @@ $opciones =  array(
 
 <?php echo form_label('Status') ?> <br/>
 
-<?php echo  form_dropdown('status', $opciones, set_value('status',$datos_catalago[0]->status))) ?><br/><br/>
+<?php echo  form_dropdown('status', $opciones, set_value('status',$datos_catalago[0]->status)) ?><br/><br/>
 
 <?php echo form_submit('btn_enviar', 'Guardar!') ?>
 
