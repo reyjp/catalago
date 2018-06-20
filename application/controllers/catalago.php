@@ -8,7 +8,7 @@ class catalago extends CI_Controller
 
 	public function catalagon()
 	{
-
+		$this->load->helper('url');
 		$this->load->model('model_catalago');
 
 		$data ['listado'] = $this->model_catalago->get_all();
@@ -90,8 +90,44 @@ class catalago extends CI_Controller
 
 		}
 
+	}
+
+	public function eliminar($id = NULL){
+
+		if ($id == NULL OR !is_numeric($id)) {
+			echo 'falta id';
+			return;
+		}
+
+		$this->load->helper('form');
+		$this->load->helper('url');
+		$this->load->model('model_catalago');
+
+
+		if ($this->input->post()){
+			$id_eliminar = $this->input->post('id');
+			$this->model_catalago->eliminar($id_eliminar);
+			redirect('catalago/catalagon');
+
+		}else{
+
+
+			$data['datos_catalago'] = $this->model_catalago->get_by_id($id);
+
+			if (empty($data['datos_catalago'])) {
+				echo "el id es invalido";
+
+			}else{
+			$this->load->view('view_delete_c', $data);
+		}
+
+		}
+
 		
 
 		
+
 	}
+
+
 }

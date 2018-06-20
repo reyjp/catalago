@@ -1,5 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-class model_catalago extends CI_Model
+class model_configuracion extends CI_Model
 {
     /* function __construct()
      {
@@ -11,7 +11,7 @@ class model_catalago extends CI_Model
      function get_all()
      {
      	$this->load->database();
-     	$query  = $this->db->get('catalagon');
+     	$query  = $this->db->get('configuracion_n');
 
      	return $query->result();
      	
@@ -21,7 +21,7 @@ class model_catalago extends CI_Model
      {
           $this->load->database();
            $query  = $this->db->where('id',$id);
-          $query  = $this->db->get('catalagon');
+          $query  = $this->db->get('configuracion_n');
 
           return $query->result();
           
@@ -33,7 +33,7 @@ class model_catalago extends CI_Model
           $data_insertar = $this->input->post();
           unset($data_insertar['btn_enviar']);
 
-          $this->db->insert('catalagon', $data_insertar);
+          $this->db->insert('configuracion_n', $data_insertar);
 
           return $this->db->insert_id(); 
      }
@@ -45,7 +45,7 @@ class model_catalago extends CI_Model
           unset($data_editar['btn_enviar']);
 
           $this->db->where('id',$id);
-          $this->db->update('catalagon', $data_editar);
+          $this->db->update('configuracion_n', $data_editar);
      }
 
 
@@ -55,15 +55,11 @@ class model_catalago extends CI_Model
          
 
           $this->db->where('id',$id);
-          $this->db->delete('catalagon');
+          $this->db->delete('configuracion_n');
      }  
      
 
 
  }
-
-
-
- /* Fin del Archivo contactos*/
 
 

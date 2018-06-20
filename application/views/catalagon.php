@@ -26,6 +26,8 @@
 
 	<?php		} ?>
 
+	<a href="">Nuevo Catalago</a>
+
 
 	
 </body>
