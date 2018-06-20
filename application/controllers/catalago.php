@@ -52,7 +52,7 @@ class catalago extends CI_Controller
 	public function modificar($id = NULL ){
 
 		if ($id == NULL OR !is_numeric($id)) {
-			echo 'falta id'	;
+			echo 'falta id';
 			return;
 		}
 
@@ -71,9 +71,10 @@ class catalago extends CI_Controller
 
 			if ($this->form_validation->run() == TRUE) {
 				$this->model_catalago->edit($id);
+				redirect('catalago/catalagon');
 			}else{
 				$this->load->view('view_nuevo_catalago');
-				redirect('catalago');
+				
 			}
 
 		}else{
