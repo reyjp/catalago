@@ -1,30 +1,33 @@
-<h1>Eliminar Catalago</h1>
-
-
-Esta seguro de eliminar el catalago: <strong><?php echo $datos_catalago[0]->nombre ?></strong><br/>
-
-<?php 
-
+<?php
 
 $input_id = array(
-		'id'         => $datos_catalago[0]->id
+              'id'        => $datos_catalago[0]->id,
+            );
 
-
-
-
-
-); 
-
-
-?>
-
-
-<?php echo form_open() ?> <br/>
-
-
-<?php echo form_hidden($input_id) ?>
-
-<?php echo form_submit('btn_enviar', 'Si deseo eliminarlo!') ?>
-
-
-<?php echo form_close() ?>
+?><div id="container">
+	<?php
+	echo form_open();
+	  echo '<center>';
+	  echo '<table border=0 class="ventanas" width="650" cellspacing="0" cellpadding="0">';
+	  echo '<tr>';
+	  echo "<td height='10' class='tabla_ventanas_login' height='10' colspan='3'><legend align='center'>Eliminar Información de ".$datos_catalago[0]->nombre.' '.$datos_catalago[0]->usuariom."</legend></td>";
+	  echo '</tr>';
+	  echo '<tr><td colspan=3><center>';
+	  echo '<table width="600">';
+	  echo '<tr>';
+	  echo '<td>';
+	  echo '<div class="alert alert-warning text-center">Esta Seguro de Eliminar el Registro</div>';
+	  echo form_hidden($input_id);
+	  echo '<center>';
+	  echo form_submit('btn_guardar','No','class="btn btn-default"');
+	  echo form_submit('btn_guardar','Si','class="btn btn-danger"');
+	  echo '</center>';
+	  echo '</td>';
+	  echo '</tr>';
+	  echo '</table>';
+	  echo '</center></td></tr>';
+      echo '</table>';
+      echo '</center>';
+	  echo form_close();
+	?>
+	</div>

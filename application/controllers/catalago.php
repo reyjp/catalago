@@ -20,13 +20,16 @@ class catalago extends CI_Controller
 
 	public function agregar(){
 
+		
+		
+		
 		$this->load->view('header');
 
 		$this->load->helper('form');
 		$this->load->library('form_validation');
 		$this->load->model('model_catalago');
 		
-
+       
 		if ($this->input->post()) {
 			$this->form_validation->set_rules('nombre','El Nombre','required');
 			$this->form_validation->set_rules('creador','Creador','required|min_length[3]');
@@ -35,7 +38,9 @@ class catalago extends CI_Controller
 			$this->form_validation->set_rules('status','Estatus','trim');
 
 			if ($this->form_validation->run()== TRUE) {
+				
 				$id_insertado = $this->model_catalago->add();
+				
 				redirect('catalago/catalagon');
 				
 			}else{
@@ -101,7 +106,7 @@ class catalago extends CI_Controller
 			echo 'falta id';
 			return;
 		}
-
+		$this->load->view('header');
 		$this->load->helper('form');
 		$this->load->helper('url');
 		$this->load->model('model_catalago');

@@ -30,7 +30,9 @@ class model_catalago extends CI_Model
      function add()
      {
           $this->load->database(); 
+           $hoy    = date("Y")."-".date("m")."-".date("d")." ".date("H:i:s");
           $data_insertar = $this->input->post();
+          $data_insertar["fechac"] = $hoy;
           unset($data_insertar['btn_enviar']);
 
           $this->db->insert('catalagon', $data_insertar);
@@ -41,7 +43,9 @@ class model_catalago extends CI_Model
      function edit($id)
      {
      	  $this->load->database(); 
+             $hoy    = date("Y")."-".date("m")."-".date("d")." ".date("H:i:s");
           $data_editar = $this->input->post();
+           $data_editar["fechaum"] = $hoy;
           unset($data_editar['btn_enviar']);
 
           $this->db->where('id',$id);
