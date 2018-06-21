@@ -20,7 +20,7 @@ class configuracion extends CI_Controller
 
 	public function agregar(){
 
-
+		$this->load->view('header');
 		$this->load->helper('form');
 		$this->load->library('form_validation');
 		$this->load->model('model_configuracion');

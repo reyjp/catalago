@@ -1,7 +1,6 @@
 <h2>Nueva Configuracion</h2>
 
 
-<br/> <br/>
 
 
 
@@ -102,7 +101,7 @@ $input_linkt	  = array(
 
 <?php echo form_label('Link Twitter') ?> <br/>
 
-<?php echo form_input($input_t) ?><?php echo form_error('linkt'); ?> <br/><br/>
+<?php echo form_input($input_linkt) ?><?php echo form_error('linkt'); ?> <br/><br/>
 
 
 

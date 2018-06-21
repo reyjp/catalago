@@ -20,11 +20,12 @@ class catalago extends CI_Controller
 
 	public function agregar(){
 
+		$this->load->view('header');
 
 		$this->load->helper('form');
 		$this->load->library('form_validation');
 		$this->load->model('model_catalago');
-
+		
 
 		if ($this->input->post()) {
 			$this->form_validation->set_rules('nombre','El Nombre','required');
@@ -35,7 +36,7 @@ class catalago extends CI_Controller
 
 			if ($this->form_validation->run()== TRUE) {
 				$id_insertado = $this->model_catalago->add();
-				echo "el id creado es:".$id_insertado;
+				redirect('catalago/catalagon');
 				
 			}else{
 				$this->load->view('view_nuevo_catalago' );
@@ -48,6 +49,8 @@ class catalago extends CI_Controller
 		
 
 	}
+
+	
 
 	public function modificar($id = NULL ){
 
