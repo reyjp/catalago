@@ -60,7 +60,7 @@ class configuracion extends CI_Controller
 			return;
 		}
 
-		
+		$this->load->view('header');
 		$this->load->helper('form');
 		$this->load->helper('url');
 		$this->load->library('form_validation');
@@ -77,7 +77,7 @@ class configuracion extends CI_Controller
 
 			if ($this->form_validation->run() == TRUE) {
 				$this->model_configuracion->edit($id);
-				redirect('configuracion/configuracion_n');
+				redirect('#');
 			}else{
 				$this->load->view('view_nuevo_configuracion');
 				
