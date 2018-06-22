@@ -64,7 +64,7 @@ class catalago extends CI_Controller
 			return;
 		}
 
-		
+		$this->load->view('header');
 		$this->load->helper('form');
 		$this->load->helper('url');
 		$this->load->library('form_validation');

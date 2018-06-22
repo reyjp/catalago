@@ -1,12 +1,17 @@
-<h2>Nueva Configuracion</h2>
-
-
-
-
 
 <?php
 
-
+ echo '<center>';
+	  echo '<table border=0 class="ventanas" width="650" cellspacing="0" cellpadding="0">';
+	  echo '<tr>';
+	  echo "<td height='10' class='tabla_ventanas_login' height='10' colspan='3'><legend align='center'>.: Nueva Configuración :.</legend></td>";
+	  echo '</tr>';
+	  echo '<tr><td colspan=3>';
+	  $attributes = array("class" => "form-horizontal", "id" => "form", "name" => "form");
+	  //echo form_open("clientes/Save", $attributes);
+	  echo form_open();
+	  echo '<center>';
+	  echo '<table border=0>';
 
 
 $input_nombre 	  = array(
