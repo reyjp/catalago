@@ -28,6 +28,7 @@ class configuracion extends CI_Controller
 
 		if ($this->input->post()) {
 			$this->form_validation->set_rules('nombre_empresa','El Nombre','required');
+			$this->form_validation->set_rules('logo','El logo','required');
 			$this->form_validation->set_rules('abreviatura','Abreviatura','required|min_length[3]');
 			$this->form_validation->set_rules('link','Enlace','required|min_length[3]');
 			$this->form_validation->set_rules('linkf','Facebook','required|min_length[3]');
@@ -68,12 +69,16 @@ class configuracion extends CI_Controller
 
 			if ($this->input->post()) {
 			$this->form_validation->set_rules('nombre_empresa','El Nombre','required');
+			$this->form_validation->set_rules('logo','El logo','required');
 			$this->form_validation->set_rules('abreviatura','Abreviatura','required|min_length[3]');
 			$this->form_validation->set_rules('link','Enlace','required|min_length[3]');
 			$this->form_validation->set_rules('linkf','Facebook','required|min_length[3]');
 			$this->form_validation->set_rules('linkl','Linkedind','required|min_length[3]');
 			$this->form_validation->set_rules('linkg','Google','required|min_length[3]');
-			$this->form_validation->set_rules('linkt','Twitter','required|min_length[3]');		
+			$this->form_validation->set_rules('linkt','Twitter','required|min_length[3]');
+
+			
+		
 
 			if ($this->form_validation->run() == TRUE) {
 				$this->model_configuracion->edit($id);
@@ -96,6 +101,28 @@ class configuracion extends CI_Controller
 
 		}
 
+	}
+
+	private function _do_upload()
+	{
+		$config['upload_path']          = 'upload/';
+        $config['allowed_types']        = 'gif|jpg|png';
+        $config['max_size']             = 100; //set max size allowed in Kilobyte
+        $config['max_width']            = 1000; // set max width image allowed
+        $config['max_height']           = 1000; // set max height allowed
+        $config['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
+
+        $this->load->library('upload', $config);
+
+        if(!$this->upload->do_upload('logo')) //upload and validate
+        {
+            $data['inputerror'][] = 'logo';
+			$data['error_string'][] = 'Upload error: '.$this->upload->display_errors('',''); //show ajax error
+			
+			echo json_encode($data);
+			exit();
+		}
+		return $this->upload->data('file_name');
 	}
 
 	public function eliminar($id = NULL){

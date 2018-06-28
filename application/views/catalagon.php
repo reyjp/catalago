@@ -10,7 +10,7 @@
 </script>
 
 <div id="container"><br/>
-	<h2 align="center">Administrador de Catalagos</h2>
+	<h2 align="center">Listado de Catalagos</h2>
 	<?php
 if(isset($_GET['save'])){
 	echo '<div class="alert alert-success text-center">La Información  se Almaceno Correctamente</div>';
@@ -25,12 +25,14 @@ if(isset($_GET['update'])){
 	
 ?>
 <center>
-<table id="catalago" border="0" cellpadding="0" cellspacing="0" class="pretty">
+<table id="catalago" border="0" cellpadding="5" cellspacing="0" class="pretty">
 <thead>
 <tr>
 <th>ACCION</th>
 <th>NOMBRE</th>
+<th>IMAGEN</th>
 <th>ACRONIMO</th>
+<th>ARCHIVO PDF</th>
 <th>CREADOR</th>
 <th>USUARIO M</th>
 
@@ -49,12 +51,13 @@ if(isset($_GET['update'])){
 ?>
 		<a href="<?php echo base_url();?>index.php/catalago/agregar/<?php echo $catalago->id;?>/" class="btn btn-default">Nuevo</a>
 		<a href="<?php echo base_url();?>index.php/catalago/modificar/<?php echo $catalago->id;?>/" class="btn btn-success">Editar</a>
-		
 		<a href="<?php echo base_url();?>index.php/catalago/eliminar/<?php echo $catalago->id; ?>" class="btn btn-danger">Eliminar</a>
 <?php		
 		echo '</td>';
  		echo '<td>'.$catalago->nombre.'</td>';
+ 		echo '<td>'.$catalago->imagen. '</td>';
 		echo '<td>'.$catalago->acronimo.'</td>';
+		echo '<td>'.$catalago->archivo_pdf.'</td>';
 		echo '<td>'.$catalago->creador.'</td>';
 		echo '<td>'.$catalago->usuariom.'</td>';
 		

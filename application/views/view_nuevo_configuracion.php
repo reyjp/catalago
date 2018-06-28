@@ -17,10 +17,21 @@
 $input_nombre 	  = array(
 	'name'        => 'nombre_empresa',
 	'id'          => 'nombre_empresa',
-	'maxlenght'	  => '50',	
+	'maxlenght'	  => '200',	
 	'size'        => '100',
 	'value'       => set_value('nombre',@$datos_configuracion[0]->nombre_empresa)
 	);
+
+
+$input_logo	  = array(
+	'name'        => 'logo',
+	'id'          => 'logo',
+	'maxlenght'	  => '50',	
+	'size'        => '100',
+	'type'		  => 'file', 
+	'value'       => set_value('logo',@$datos_configuracion[0]->logo)
+	);
+ 
 
 $input_abreviatura 	  = array(
 	'name'        => 'abreviatura',
@@ -83,6 +94,10 @@ $input_linkt	  = array(
 <?php echo form_label('Nombre') ?> <br/>
 
 <?php echo form_input($input_nombre) ?><?php echo form_error('nombre_empresa'); ?> <br/><br/>
+
+<?php echo form_label('Logo') ?> <br/>
+
+<?php echo form_input($input_logo) ?><?php echo form_error('logo'); ?> <br/><br/>
 
 <?php echo form_label('Abreviatura') ?> <br/>
 

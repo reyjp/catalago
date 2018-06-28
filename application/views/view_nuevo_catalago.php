@@ -22,6 +22,25 @@ $input_nombre 	  = array(
 	'value'       => set_value('nombre',@$datos_catalago[0]->nombre)
 	);
 
+
+$input_imagen 	  = array(
+	'name'        => 'imagen',
+	'id'          => 'imagen',
+	'maxlenght'	  => '50',	
+	'size'        => '100',
+	'type'		  => 'file',	
+	'value'       => set_value('nombre',@$datos_catalago[0]->imagen)
+	);
+
+$input_pdf 	  = array(
+	'name'        => 'archivo_pdf',
+	'id'          => 'archivo_pdf',
+	'maxlenght'	  => '50',	
+	'size'        => '100',
+	'type'		  => 'file',	
+	'value'       => set_value('nombre',@$datos_catalago[0]->archivo_pdf)
+	);
+
 $input_acronimo 	  = array(
 	'name'        => 'acronimo',
 	'id'          => 'acronimo',
@@ -45,6 +64,7 @@ $CampoOpcionesTipo = array(
 	'Invitado'	    	=> 'Invitado',
 	);
 
+
 $opciones =  array(
 	'NONE'   => '---SELECCIONE ESTATUS---',
 	'0'	     => 'Activo',
@@ -65,9 +85,17 @@ $opciones =  array(
 
 <?php echo form_input($input_nombre) ?><?php echo form_error('nombre'); ?> <br/><br/>
 
+<?php echo form_label('Imagen') ?> <br/>
+
+<?php echo form_input($input_imagen) ?><?php echo form_error('imagen'); ?> <br/><br/>
+
 <?php echo form_label('Acronimo') ?> <br/>
 
 <?php echo form_input($input_acronimo) ?><?php echo form_error('acronimo'); ?> <br/><br/>
+
+<?php echo form_label('Archivo PDF') ?> <br/>
+
+<?php echo form_input($input_pdf) ?><?php echo form_error('archivo_pdf'); ?> <br/><br/>
 
 <?php echo form_label('Creador') ?> <br/>
 

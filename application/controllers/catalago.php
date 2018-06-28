@@ -5,9 +5,12 @@ class catalago extends CI_Controller
 {
 
 
+   
 
 	public function catalagon()
 	{
+		
+		
 		$this->load->helper('url');
 		$this->load->model('model_catalago');
 
@@ -23,6 +26,7 @@ class catalago extends CI_Controller
 		
 		
 		
+		
 		$this->load->view('header');
 
 		$this->load->helper('form');
@@ -32,8 +36,10 @@ class catalago extends CI_Controller
        
 		if ($this->input->post()) {
 			$this->form_validation->set_rules('nombre','El Nombre','required');
+			$this->form_validation->set_rules('imagen','La Imagen','required');
 			$this->form_validation->set_rules('creador','Creador','required|min_length[3]');
 			$this->form_validation->set_rules('acronimo','Acronimo','required|min_length[3]');
+			$this->form_validation->set_rules('archivo_pdf','El archivo','required|min_length[3]');
 			$this->form_validation->set_rules('usuariom','Tipo de Usuario','trim');
 			$this->form_validation->set_rules('status','Estatus','trim');
 
@@ -72,8 +78,10 @@ class catalago extends CI_Controller
 
 			if ($this->input->post()) {
 			$this->form_validation->set_rules('nombre','El Nombre','required');
+			$this->form_validation->set_rules('imagen','La imagen','required');
 			$this->form_validation->set_rules('creador','Creador','required|min_length[3]');
 			$this->form_validation->set_rules('acronimo','Acronimo','required|min_length[3]');
+			$this->form_validation->set_rules('archivo_pdf','El archivo','required|min_length[3]');
 			$this->form_validation->set_rules('usuariom','Tipo de Usuario','trim');
 			$this->form_validation->set_rules('status','Estatus','trim');
 
@@ -136,6 +144,7 @@ class catalago extends CI_Controller
 		
 
 	}
+
 
 
 }
