@@ -145,6 +145,28 @@ class catalago extends CI_Controller
 
 	}
 
+	private function _do_upload()
+	{
+		$config['upload_path']          = 'upload/';
+        $config['allowed_types']        = 'gif|jpg|png|pdf';
+        $config['max_size']             = 100; //set max size allowed in Kilobyte
+        $config['max_width']            = 1000; // set max width image allowed
+        $config['max_height']           = 1000; // set max height allowed
+        $config['file_name']            = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
+
+        $this->load->library('upload', $config);
+
+        if(!$this->upload->do_upload('photo')) //upload and validate
+        {
+            $data['inputerror'][] = 'photo';
+			$data['error_string'][] = 'Upload error: '.$this->upload->display_errors('',''); //show ajax error
+			$data['status'] = FALSE;
+			echo json_encode($data);
+			exit();
+		}
+		return $this->upload->data('file_name');
+	}
+
 
 
 }
