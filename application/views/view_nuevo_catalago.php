@@ -79,6 +79,7 @@ $opciones =  array(
 
 
 
+
 <?php echo form_open() ?> <br/>
 
 <?php echo form_label('Nombre') ?> <br/>

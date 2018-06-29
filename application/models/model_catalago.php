@@ -22,6 +22,7 @@ class model_catalago extends CI_Model
           $this->load->database();
            $query  = $this->db->where('id',$id);
           $query  = $this->db->get('catalagon');
+           $query  = $this->db->get('usuarios');
 
           return $query->result();
           
@@ -29,7 +30,8 @@ class model_catalago extends CI_Model
 
      function add()
      {
-          $this->load->database(); 
+          $this->load->database();
+           $usuario = $this->session->userdata('TIPOUSUARIO'); 
            $hoy    = date("Y")."-".date("m")."-".date("d")." ".date("H:i:s");
           $data_insertar = $this->input->post();
           $data_insertar["fechac"] = $hoy;
